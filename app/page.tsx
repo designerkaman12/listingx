@@ -1,17 +1,17 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, BarChart2, Zap, Target, TrendingUp, CheckCircle, Star, ChevronDown, Globe, ShoppingCart, Package, Search, Image, FileText, Award, Users, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart2, Zap, Target, TrendingUp, CheckCircle, Star, ChevronDown, Globe, ShoppingCart, Package, Search, Image, FileText, Users, Sparkles, AlertTriangle, Shield } from "lucide-react";
 
 const features = [
-  { icon: Search, title: "AI Listing Diagnosis", desc: "Instantly identify why your product isn't selling — from keyword gaps to image problems to pricing issues.", color: "#6366f1" },
-  { icon: Target, title: "Conversion Optimizer", desc: "Get a prioritized action plan to fix every listing gap and turn browsers into buyers.", color: "#8b5cf6" },
-  { icon: FileText, title: "AI Content Generator", desc: "Generate optimized titles, bullets, descriptions, A+ content, FAQs, and ad copy in seconds.", color: "#06b6d4" },
-  { icon: Image, title: "Creative Advisor", desc: "Get a detailed image brief for professional photography, infographics, and lifestyle shots.", color: "#f97316" },
-  { icon: TrendingUp, title: "Growth Forecasting", desc: "See estimated sales uplift projections before you invest in changes — know the ROI upfront.", color: "#22c55e" },
-  { icon: BarChart2, title: "Weekly Growth Manager", desc: "Your AI growth assistant re-analyzes listings every week and tracks your improvement over time.", color: "#ef4444" },
-  { icon: Users, title: "Competitor Intelligence", desc: "See exactly what top competitors are doing better and close the gap with data-driven fixes.", color: "#f59e0b" },
-  { icon: Globe, title: "Multi-Marketplace", desc: "Platform-specific recommendations for Amazon, Flipkart, and more — not generic advice.", color: "#10b981" },
+  { icon: Search, title: "AI Listing Diagnosis", desc: "Instantly identify why your product isn't selling — from keyword gaps to image problems to pricing issues.", color: "#6366f1", bg: "rgba(99,102,241,0.08)" },
+  { icon: Target, title: "Conversion Optimizer", desc: "Get a prioritized action plan to fix every listing gap and turn browsers into buyers.", color: "#8b5cf6", bg: "rgba(139,92,246,0.08)" },
+  { icon: FileText, title: "AI Content Generator", desc: "Generate optimized titles, bullets, descriptions, A+ content, FAQs, and ad copy in seconds.", color: "#06b6d4", bg: "rgba(6,182,212,0.08)" },
+  { icon: Image, title: "Creative Advisor", desc: "Get a detailed image brief for professional photography, infographics, and lifestyle shots.", color: "#f97316", bg: "rgba(249,115,22,0.08)" },
+  { icon: TrendingUp, title: "Growth Forecasting", desc: "See estimated sales uplift projections before you invest in changes — know the ROI upfront.", color: "#22c55e", bg: "rgba(34,197,94,0.08)" },
+  { icon: BarChart2, title: "Weekly Growth Manager", desc: "Your AI growth assistant re-analyzes listings every week and tracks your improvement over time.", color: "#ef4444", bg: "rgba(239,68,68,0.08)" },
+  { icon: Users, title: "Competitor Intelligence", desc: "See exactly what top competitors are doing better and close the gap with data-driven fixes.", color: "#f59e0b", bg: "rgba(245,158,11,0.08)" },
+  { icon: Globe, title: "Multi-Marketplace", desc: "Platform-specific recommendations for Amazon, Flipkart, and more — not generic advice.", color: "#10b981", bg: "rgba(16,185,129,0.08)" },
 ];
 
 const steps = [
@@ -23,99 +23,130 @@ const steps = [
 const marketplaces = ["Amazon", "Flipkart", "Shopify", "Meesho", "Myntra", "Walmart", "eBay", "Etsy"];
 
 const testimonials = [
-  { name: "Rahul Mehta", role: "Amazon Seller, Electronics", quote: "ListingX found 8 issues in my top product that I had completely missed. After fixing them, my sales went up 43% in 3 weeks.", stars: 5, avatar: "RM" },
-  { name: "Priya Sharma", role: "Flipkart Brand Owner, Beauty", quote: "The AI content generator saved me hours. The bullets and A+ content it created are better than what I paid an agency for.", stars: 5, avatar: "PS" },
-  { name: "James Carter", role: "Amazon Seller, Home & Kitchen", quote: "The competitor benchmarking alone is worth the subscription. I finally understand why I'm losing to competitors.", stars: 5, avatar: "JC" },
+  { name: "Rahul Mehta", role: "Amazon Seller · Electronics", quote: "ListingX found 8 issues in my top product that I completely missed. After fixing them, my sales went up 43% in 3 weeks.", stars: 5, initials: "RM", color: "#6366f1" },
+  { name: "Priya Sharma", role: "Flipkart Brand Owner · Beauty", quote: "The AI content generator saved me hours. The bullets and A+ content it created are better than what I paid an agency for.", stars: 5, initials: "PS", color: "#ec4899" },
+  { name: "James Carter", role: "Amazon Seller · Home & Kitchen", quote: "The competitor benchmarking alone is worth the subscription. I finally understand why I'm losing to competitors.", stars: 5, initials: "JC", color: "#f97316" },
 ];
 
 const pricing = [
-  { name: "Starter", price: 29, period: "mo", products: 20, features: ["AI listing diagnosis", "Basic content generation", "2 marketplaces", "Weekly growth report", "Email support"], cta: "Start Free Trial", featured: false },
-  { name: "Pro", price: 79, period: "mo", products: 100, features: ["Everything in Starter", "Advanced AI analysis", "Unlimited content gen", "Competitor intelligence", "Sales forecasting", "Priority support", "Team access (3 seats)"], cta: "Start Free Trial", featured: true },
-  { name: "Agency", price: 199, period: "mo", products: 500, features: ["Everything in Pro", "500+ products", "Unlimited marketplaces", "White-label reports", "API access", "Dedicated account manager", "Unlimited team seats"], cta: "Contact Sales", featured: false },
+  { name: "Starter", price: 29, products: 20, features: ["AI listing diagnosis", "Basic content generation", "2 marketplaces", "Weekly growth report", "Email support"], cta: "Start Free Trial", featured: false },
+  { name: "Pro", price: 79, products: 100, features: ["Everything in Starter", "Advanced AI analysis", "Unlimited content gen", "Competitor intelligence", "Sales forecasting", "Priority support", "Team access (3 seats)"], cta: "Start Free Trial", featured: true },
+  { name: "Agency", price: 199, products: 500, features: ["Everything in Pro", "500+ products", "Unlimited marketplaces", "White-label reports", "API access", "Dedicated account manager", "Unlimited team seats"], cta: "Contact Sales", featured: false },
 ];
 
 const faqs = [
   { q: "Do I need technical knowledge to use ListingX?", a: "No. ListingX is built for ecommerce sellers, not developers. Everything is explained in plain business language with step-by-step action plans." },
-  { q: "Which marketplaces does ListingX support?", a: "We currently support Amazon and Flipkart with full analysis. Shopify, Meesho, Myntra, and Walmart are coming soon. The platform is built to be marketplace-ready." },
+  { q: "Which marketplaces does ListingX support?", a: "We currently support Amazon and Flipkart with full analysis. Shopify, Meesho, Myntra, and Walmart are coming soon." },
   { q: "How accurate are the AI recommendations?", a: "Our AI is trained on marketplace best practices, top-listing patterns, and conversion data. All recommendations are backed by platform-specific logic, not generic advice." },
   { q: "Can the AI actually generate listing content?", a: "Yes. ListingX can generate optimized titles, bullet points, product descriptions, A+ content, FAQs, SEO keywords, ad copy, and image briefs — all tailored to your product and marketplace." },
   { q: "Is there a free trial?", a: "Yes. All plans include a 14-day free trial with no credit card required. You get full access to all features during your trial." },
   { q: "How does the weekly growth manager work?", a: "Every week, ListingX re-analyzes your listings, compares before vs. after, identifies new opportunities, and sends you a weekly action plan so you're always improving." },
 ];
 
+const S: Record<string, React.CSSProperties> = {
+  nav: { position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 32px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.9)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: "1px solid #f1f5f9", boxShadow: "0 1px 12px rgba(0,0,0,0.06)" },
+  hero: { minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "120px 24px 80px", position: "relative", overflow: "hidden", background: "linear-gradient(180deg, #fafaff 0%, #f8fafc 100%)" },
+};
+
 export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div style={{ background: "#0f172a", color: "white", fontFamily: "Inter, sans-serif" }}>
+    <div style={{ background: "#f8fafc", color: "#0f172a", fontFamily: "Inter, sans-serif" }}>
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 24px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(15,23,42,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <nav style={S.nav}>
+        <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+          <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 12px rgba(99,102,241,0.35)" }}>
             <Zap size={18} color="white" />
           </div>
-          <span style={{ fontWeight: 800, fontSize: "1.2rem", letterSpacing: "-0.02em" }}>ListingX</span>
+          <span style={{ fontWeight: 900, fontSize: "1.2rem", color: "#0f172a", letterSpacing: "-0.02em" }}>ListingX</span>
         </div>
-        <div style={{ display: "flex", gap: 32, fontSize: "0.9rem", color: "#94a3b8" }}>
+        <div style={{ display: "flex", gap: 32, fontSize: "0.875rem" }}>
           {["Features", "How It Works", "Pricing", "FAQ"].map(item => (
-            <a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`} style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget.style.color = "white")} onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>{item}</a>
+            <a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`} style={{ color: "#64748b", textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#0f172a")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#64748b")}>{item}</a>
           ))}
         </div>
-        <div style={{ display: "flex", gap: 12 }}>
-          <Link href="/login" style={{ padding: "9px 20px", borderRadius: 9, fontSize: "0.875rem", fontWeight: 600, color: "white", textDecoration: "none", border: "1px solid rgba(255,255,255,0.15)", transition: "all 0.2s" }}>Log In</Link>
-          <Link href="/signup" style={{ padding: "9px 20px", borderRadius: 9, fontSize: "0.875rem", fontWeight: 600, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "white", textDecoration: "none", boxShadow: "0 4px 12px rgba(99,102,241,0.4)" }}>Start Free Trial</Link>
+        <div style={{ display: "flex", gap: 10 }}>
+          <Link href="/login" className="btn btn-secondary btn-sm" style={{ textDecoration: "none" }}>Log In</Link>
+          <Link href="/signup" className="btn btn-primary btn-sm" style={{ textDecoration: "none" }}>Start Free Trial</Link>
         </div>
       </nav>
 
       {/* HERO */}
-      <section style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "120px 24px 80px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.18) 0%, transparent 60%)" }} />
-        <div style={{ position: "absolute", top: "30%", left: "10%", width: 300, height: 300, background: "rgba(139,92,246,0.08)", borderRadius: "50%", filter: "blur(60px)" }} />
-        <div style={{ position: "absolute", top: "20%", right: "10%", width: 250, height: 250, background: "rgba(99,102,241,0.1)", borderRadius: "50%", filter: "blur(60px)" }} />
+      <section style={S.hero}>
+        {/* BG blobs */}
+        <div style={{ position: "absolute", top: "10%", left: "5%", width: 400, height: 400, background: "radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)" }} />
+        <div style={{ position: "absolute", top: "20%", right: "5%", width: 350, height: 350, background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)" }} />
+        <div style={{ position: "absolute", bottom: "15%", left: "30%", width: 300, height: 300, background: "radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)" }} />
 
         <div style={{ position: "relative", maxWidth: 860, margin: "0 auto" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 16px", background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.3)", borderRadius: 99, fontSize: "0.8rem", fontWeight: 600, color: "#a5b4fc", marginBottom: 32 }}>
-            <Sparkles size={13} /> AI-Powered Ecommerce Growth Platform
+          <div className="hero-badge animate-fade-in-up" style={{ marginBottom: 28 }}>
+            <Sparkles size={13} />
+            <span>AI-Powered Ecommerce Growth Platform</span>
           </div>
 
-          <h1 style={{ fontSize: "clamp(2.8rem, 6vw, 4.5rem)", fontWeight: 900, lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: 24 }}>
-            Your AI Ecommerce<br />
-            <span style={{ background: "linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 50%, #818cf8 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Growth Specialist</span>
+          <h1 className="heading-display animate-fade-in-up delay-100" style={{ marginBottom: 24, color: "#0f172a" }}>
+            Find Why Your Products<br />
+            <span className="text-gradient-primary">Aren't Selling</span> — and Fix It
           </h1>
 
-          <p style={{ fontSize: "1.2rem", color: "#94a3b8", lineHeight: 1.7, maxWidth: 660, margin: "0 auto 40px" }}>
-            Find what is stopping your products from selling — and fix it with AI. Analyze listings, discover missed opportunities, and generate everything needed to increase sales.
+          <p className="animate-fade-in-up delay-200" style={{ fontSize: "1.15rem", color: "#64748b", lineHeight: 1.7, maxWidth: 620, margin: "0 auto 40px" }}>
+            ListingX is your AI ecommerce specialist. Diagnose listing gaps, discover missed opportunities, generate premium content, and grow your sales — all in one platform.
           </p>
 
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/signup" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 32px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "white", borderRadius: 13, fontWeight: 700, fontSize: "1.05rem", textDecoration: "none", boxShadow: "0 8px 24px rgba(99,102,241,0.4)" }}>
+          <div className="animate-fade-in-up delay-300" style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+            <Link href="/signup" className="btn btn-primary btn-xl" style={{ textDecoration: "none", gap: 10 }}>
               Start Free — 14 Days <ArrowRight size={18} />
             </Link>
-            <Link href="/dashboard" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 32px", background: "rgba(255,255,255,0.07)", color: "white", borderRadius: 13, fontWeight: 600, fontSize: "1.05rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>
+            <Link href="/dashboard" className="btn btn-secondary btn-xl" style={{ textDecoration: "none" }}>
               View Demo Dashboard
             </Link>
           </div>
+          <p className="animate-fade-in-up delay-400" style={{ color: "#94a3b8", fontSize: "0.82rem" }}>No credit card required · Cancel anytime · Full access trial</p>
 
-          <p style={{ marginTop: 20, color: "#64748b", fontSize: "0.85rem" }}>No credit card required • Cancel anytime • 14-day free trial</p>
+          {/* Demo preview card */}
+          <div className="animate-fade-in-up delay-500" style={{ marginTop: 60, background: "white", border: "1px solid #e2e8f0", borderRadius: 20, padding: "24px 28px", boxShadow: "0 8px 40px rgba(0,0,0,0.1)", maxWidth: 680, margin: "60px auto 0", textAlign: "left" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
+              <div>
+                <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>✦ AI DIAGNOSIS — LIVE PREVIEW</div>
+                <div style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.95rem" }}>Wireless Bluetooth Earbuds Pro X5</div>
+              </div>
+              <div style={{ background: "#fff7ed", color: "#ea580c", border: "1px solid #fed7aa", borderRadius: 20, padding: "4px 12px", fontSize: "0.75rem", fontWeight: 700 }}>● Have Potential</div>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 18 }}>
+              {[["52", "Listing Score", "#ef4444"], ["41", "SEO Score", "#f97316"], ["38", "Conversion", "#ef4444"], ["82", "Growth Potential", "#22c55e"]].map(([val, label, color]) => (
+                <div key={label} style={{ background: "#f8fafc", borderRadius: 12, padding: "12px 10px", textAlign: "center" }}>
+                  <div style={{ fontSize: "1.6rem", fontWeight: 900, color }}>{val}</div>
+                  <div style={{ fontSize: "0.7rem", color: "#94a3b8", fontWeight: 600, marginTop: 2 }}>{label}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 10, padding: "12px 14px", display: "flex", gap: 10, alignItems: "flex-start" }}>
+              <AlertTriangle size={15} color="#dc2626" style={{ flexShrink: 0, marginTop: 1 }} />
+              <div style={{ fontSize: "0.82rem", color: "#374151" }}><strong style={{ color: "#dc2626" }}>Top Issue:</strong> Your title is missing 3-5 high-volume search keywords → reduces impressions by ~40% · Fix: Rewrite title with keyword-first formula</div>
+            </div>
+          </div>
 
           {/* Stats */}
-          <div style={{ display: "flex", gap: 48, justifyContent: "center", marginTop: 64, paddingTop: 48, borderTop: "1px solid rgba(255,255,255,0.08)", flexWrap: "wrap" }}>
-            {[["10,000+", "Sellers"], ["2M+", "Products Analyzed"], ["45%", "Avg Sales Uplift"], ["Amazon & Flipkart", "Supported"]].map(([val, label]) => (
+          <div className="animate-fade-in-up delay-600" style={{ display: "flex", gap: 48, justifyContent: "center", marginTop: 64, paddingTop: 48, borderTop: "1px solid #e2e8f0", flexWrap: "wrap" }}>
+            {[["10,000+", "Active Sellers"], ["2M+", "Products Analyzed"], ["45%", "Avg Sales Uplift"], ["Amazon & Flipkart", "Fully Supported"]].map(([val, label]) => (
               <div key={label} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "1.8rem", fontWeight: 800, background: "linear-gradient(135deg,#a5b4fc,#c4b5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{val}</div>
-                <div style={{ color: "#64748b", fontSize: "0.875rem", marginTop: 4 }}>{label}</div>
+                <div style={{ fontSize: "1.8rem", fontWeight: 900 }} className="text-gradient-primary">{val}</div>
+                <div style={{ color: "#94a3b8", fontSize: "0.825rem", marginTop: 4 }}>{label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* MARQUEE - Marketplaces */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "20px 0", overflow: "hidden", background: "rgba(255,255,255,0.02)" }}>
-        <div style={{ display: "flex", gap: 48, alignItems: "center", justifyContent: "center", flexWrap: "wrap", padding: "0 40px" }}>
-          <span style={{ color: "#475569", fontSize: "0.8rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em" }}>Supported Platforms</span>
-          {marketplaces.map((m) => (
-            <span key={m} style={{ color: "#64748b", fontWeight: 700, fontSize: "1rem" }}>{m}</span>
+      {/* MARQUEE */}
+      <div style={{ borderTop: "1px solid #e2e8f0", borderBottom: "1px solid #e2e8f0", padding: "18px 0", background: "white" }}>
+        <div style={{ display: "flex", gap: 40, alignItems: "center", justifyContent: "center", flexWrap: "wrap", padding: "0 32px" }}>
+          <span style={{ color: "#94a3b8", fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Supported Platforms</span>
+          {marketplaces.map(m => (
+            <span key={m} style={{ color: "#64748b", fontWeight: 700, fontSize: "0.9rem" }}>{m}</span>
           ))}
         </div>
       </div>
@@ -123,38 +154,38 @@ export default function LandingPage() {
       {/* HOW IT WORKS */}
       <section id="how-it-works" style={{ padding: "100px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <div style={{ color: "#818cf8", fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>How It Works</div>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 800, letterSpacing: "-0.02em" }}>From listing to growth<br />in three steps</h2>
+          <div className="section-label" style={{ marginBottom: 16 }}>How It Works</div>
+          <h2 className="heading-xl">From listing to growth<br />in three steps</h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 32 }}>
-          {steps.map((s) => (
-            <div key={s.step} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: 36, position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: 16, right: 20, fontSize: "4rem", fontWeight: 900, color: "rgba(99,102,241,0.08)", lineHeight: 1 }}>{s.step}</div>
-              <div style={{ width: 52, height: 52, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px,1fr))", gap: 28 }}>
+          {steps.map(s => (
+            <div key={s.step} className="step-card card-hover">
+              <div style={{ position: "absolute", top: 16, right: 20, fontSize: "4.5rem", fontWeight: 900, color: "rgba(99,102,241,0.07)", lineHeight: 1 }}>{s.step}</div>
+              <div style={{ width: 52, height: 52, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20, boxShadow: "0 4px 12px rgba(99,102,241,0.3)" }}>
                 <s.icon size={24} color="white" />
               </div>
-              <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: 12 }}>{s.title}</h3>
-              <p style={{ color: "#94a3b8", lineHeight: 1.7, fontSize: "0.95rem" }}>{s.desc}</p>
+              <h3 className="heading-md" style={{ marginBottom: 12 }}>{s.title}</h3>
+              <p style={{ color: "#64748b", lineHeight: 1.7, fontSize: "0.95rem" }}>{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* FEATURES */}
-      <section id="features" style={{ padding: "80px 24px", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <section id="features" style={{ padding: "80px 24px", background: "white", borderTop: "1px solid #e2e8f0", borderBottom: "1px solid #e2e8f0" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <div style={{ color: "#818cf8", fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>Features</div>
-            <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 800, letterSpacing: "-0.02em" }}>Everything you need to grow</h2>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <div className="section-label" style={{ marginBottom: 16 }}>Features</div>
+            <h2 className="heading-xl">Everything you need to grow</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
-            {features.map((f) => (
-              <div key={f.title} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: 28, transition: "all 0.3s", cursor: "default" }} onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
-                <div style={{ width: 44, height: 44, background: f.color + "20", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px,1fr))", gap: 20 }}>
+            {features.map(f => (
+              <div key={f.title} className="feature-card">
+                <div style={{ width: 44, height: 44, background: f.bg, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
                   <f.icon size={20} color={f.color} />
                 </div>
-                <h3 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: 8 }}>{f.title}</h3>
-                <p style={{ color: "#94a3b8", fontSize: "0.875rem", lineHeight: 1.6 }}>{f.desc}</p>
+                <h3 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: 8, color: "#0f172a" }}>{f.title}</h3>
+                <p style={{ color: "#64748b", fontSize: "0.875rem", lineHeight: 1.65 }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -163,21 +194,22 @@ export default function LandingPage() {
 
       {/* TESTIMONIALS */}
       <section style={{ padding: "100px 24px", maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 800, letterSpacing: "-0.02em" }}>Sellers love ListingX</h2>
+        <div style={{ textAlign: "center", marginBottom: 60 }}>
+          <div className="section-label" style={{ marginBottom: 16 }}>Social Proof</div>
+          <h2 className="heading-xl">Sellers love ListingX</h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28 }}>
-          {testimonials.map((t) => (
-            <div key={t.name} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: 32 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: 24 }}>
+          {testimonials.map(t => (
+            <div key={t.name} className="card card-hover" style={{ padding: 32 }}>
               <div style={{ display: "flex", marginBottom: 16 }}>
-                {[...Array(t.stars)].map((_, i) => <Star key={i} size={16} fill="#f59e0b" color="#f59e0b" />)}
+                {[...Array(t.stars)].map((_, i) => <Star key={i} size={15} fill="#f59e0b" color="#f59e0b" />)}
               </div>
-              <p style={{ color: "#cbd5e1", lineHeight: 1.7, marginBottom: 24, fontSize: "0.95rem" }}>"{t.quote}"</p>
+              <p style={{ color: "#374151", lineHeight: 1.75, marginBottom: 24, fontSize: "0.95rem" }}>"{t.quote}"</p>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{ width: 40, height: 40, borderRadius: "50%", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.8rem", fontWeight: 700 }}>{t.avatar}</div>
+                <div style={{ width: 42, height: 42, borderRadius: "50%", background: `linear-gradient(135deg,${t.color},${t.color}99)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.82rem", fontWeight: 800, color: "white" }}>{t.initials}</div>
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{t.name}</div>
-                  <div style={{ color: "#64748b", fontSize: "0.8rem" }}>{t.role}</div>
+                  <div style={{ fontWeight: 700, fontSize: "0.9rem", color: "#0f172a" }}>{t.name}</div>
+                  <div style={{ color: "#94a3b8", fontSize: "0.78rem" }}>{t.role}</div>
                 </div>
               </div>
             </div>
@@ -186,30 +218,31 @@ export default function LandingPage() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" style={{ padding: "80px 24px", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <section id="pricing" style={{ padding: "80px 24px", background: "white", borderTop: "1px solid #e2e8f0" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 16 }}>Simple, transparent pricing</h2>
-            <p style={{ color: "#94a3b8" }}>14-day free trial on all plans. No credit card required.</p>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <div className="section-label" style={{ marginBottom: 16 }}>Pricing</div>
+            <h2 className="heading-xl" style={{ marginBottom: 12 }}>Simple, transparent pricing</h2>
+            <p style={{ color: "#64748b" }}>14-day free trial on all plans. No credit card required.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "center" }}>
-            {pricing.map((p) => (
-              <div key={p.name} style={{ background: p.featured ? "white" : "rgba(255,255,255,0.04)", border: `2px solid ${p.featured ? "#6366f1" : "rgba(255,255,255,0.08)"}`, borderRadius: 20, padding: 36, color: p.featured ? "#0f172a" : "white", position: "relative", transform: p.featured ? "scale(1.04)" : "scale(1)", transition: "all 0.3s", boxShadow: p.featured ? "0 0 0 6px rgba(99,102,241,0.15), 0 32px 64px rgba(99,102,241,0.2)" : "none" }}>
-                {p.featured && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "white", padding: "4px 16px", borderRadius: 99, fontSize: "0.75rem", fontWeight: 700 }}>Most Popular</div>}
-                <div style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: 8 }}>{p.name}</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px,1fr))", gap: 24, alignItems: "center" }}>
+            {pricing.map(p => (
+              <div key={p.name} className={`pricing-card${p.featured ? " featured" : ""}`} style={{ transform: p.featured ? "scale(1.04)" : "scale(1)", position: "relative" }}>
+                {p.featured && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "white", padding: "4px 18px", borderRadius: 99, fontSize: "0.75rem", fontWeight: 700 }}>Most Popular</div>}
+                <div style={{ fontSize: "1.05rem", fontWeight: 700, marginBottom: 8, color: "#0f172a" }}>{p.name}</div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
-                  <span style={{ fontSize: "2.5rem", fontWeight: 900 }}>${p.price}</span>
-                  <span style={{ color: p.featured ? "#64748b" : "#94a3b8" }}>/{p.period}</span>
+                  <span style={{ fontSize: "2.8rem", fontWeight: 900, color: "#0f172a" }}>${p.price}</span>
+                  <span style={{ color: "#94a3b8" }}>/mo</span>
                 </div>
-                <div style={{ color: p.featured ? "#64748b" : "#94a3b8", fontSize: "0.85rem", marginBottom: 28 }}>Up to {p.products} products</div>
+                <div style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: 28 }}>Up to {p.products} products</div>
                 <ul style={{ listStyle: "none", marginBottom: 32 }}>
-                  {p.features.map((f) => (
-                    <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 12, fontSize: "0.9rem", color: p.featured ? "#374151" : "#cbd5e1" }}>
-                      <CheckCircle size={16} color="#22c55e" style={{ marginTop: 2, flexShrink: 0 }} /> {f}
+                  {p.features.map(f => (
+                    <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 12, fontSize: "0.875rem", color: "#374151" }}>
+                      <CheckCircle size={15} color="#22c55e" style={{ marginTop: 2, flexShrink: 0 }} /> {f}
                     </li>
                   ))}
                 </ul>
-                <Link href="/signup" style={{ display: "block", textAlign: "center", padding: "13px 24px", borderRadius: 12, fontWeight: 700, fontSize: "0.9rem", textDecoration: "none", background: p.featured ? "linear-gradient(135deg,#6366f1,#8b5cf6)" : "rgba(255,255,255,0.1)", color: "white", transition: "all 0.2s" }}>{p.cta}</Link>
+                <Link href="/signup" className={`btn ${p.featured ? "btn-primary" : "btn-secondary"} btn-lg`} style={{ textDecoration: "none", width: "100%", justifyContent: "center" }}>{p.cta}</Link>
               </div>
             ))}
           </div>
@@ -219,42 +252,45 @@ export default function LandingPage() {
       {/* FAQ */}
       <section id="faq" style={{ padding: "100px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 800, letterSpacing: "-0.02em" }}>Frequently asked questions</h2>
+          <h2 className="heading-xl">Frequently asked questions</h2>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {faqs.map((f, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, overflow: "hidden" }}>
-              <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 24px", background: "none", border: "none", color: "white", fontWeight: 600, fontSize: "0.95rem", cursor: "pointer", textAlign: "left", gap: 16 }}>
+            <div key={i} className="card" style={{ overflow: "hidden" }}>
+              <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 24px", background: "none", border: "none", color: "#0f172a", fontWeight: 600, fontSize: "0.95rem", cursor: "pointer", textAlign: "left", gap: 16, fontFamily: "Inter,sans-serif" }}>
                 {f.q}
-                <ChevronDown size={18} style={{ flexShrink: 0, transform: openFaq === i ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
+                <ChevronDown size={17} style={{ flexShrink: 0, transform: openFaq === i ? "rotate(180deg)" : "none", transition: "transform 0.25s", color: "#94a3b8" }} />
               </button>
-              {openFaq === i && <div style={{ padding: "0 24px 20px", color: "#94a3b8", lineHeight: 1.7, fontSize: "0.9rem" }}>{f.a}</div>}
+              {openFaq === i && <div style={{ padding: "0 24px 20px", color: "#64748b", lineHeight: 1.75, fontSize: "0.9rem", borderTop: "1px solid #f1f5f9" }}>{f.a}</div>}
             </div>
           ))}
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section style={{ padding: "80px 24px", textAlign: "center", background: "rgba(99,102,241,0.06)", borderTop: "1px solid rgba(99,102,241,0.15)" }}>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 20 }}>Ready to grow your sales?</h2>
-        <p style={{ color: "#94a3b8", fontSize: "1.1rem", marginBottom: 40 }}>Join 10,000+ sellers using ListingX to analyze, fix, and scale their ecommerce business.</p>
-        <Link href="/signup" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "18px 40px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "white", borderRadius: 14, fontWeight: 700, fontSize: "1.05rem", textDecoration: "none", boxShadow: "0 8px 32px rgba(99,102,241,0.5)" }}>
+      {/* CTA */}
+      <section style={{ padding: "80px 24px", textAlign: "center", background: "linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(139,92,246,0.04) 100%)", borderTop: "1px solid rgba(99,102,241,0.12)" }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: 99, padding: "5px 14px", fontSize: "0.78rem", fontWeight: 700, color: "#16a34a", marginBottom: 24 }}>
+          <Shield size={12} /> SOC2 Compliant · SSL Encrypted · GDPR Ready
+        </div>
+        <h2 className="heading-xl" style={{ marginBottom: 20 }}>Ready to grow your sales?</h2>
+        <p style={{ color: "#64748b", fontSize: "1.05rem", marginBottom: 40 }}>Join 10,000+ sellers using ListingX to analyze, fix, and scale their ecommerce business.</p>
+        <Link href="/signup" className="btn btn-primary btn-xl" style={{ textDecoration: "none", gap: 10 }}>
           Start Free Trial — 14 Days <ArrowRight size={18} />
         </Link>
-        <p style={{ marginTop: 16, color: "#475569", fontSize: "0.85rem" }}>No credit card required • Full access • Cancel anytime</p>
+        <p style={{ marginTop: 16, color: "#94a3b8", fontSize: "0.82rem" }}>No credit card required · Full access · Cancel anytime</p>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ padding: "40px 24px", borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+      <footer style={{ padding: "36px 32px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16, background: "white" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 28, height: 28, borderRadius: 8, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center" }}><Zap size={14} color="white" /></div>
-          <span style={{ fontWeight: 800, fontSize: "1rem" }}>ListingX</span>
+          <span style={{ fontWeight: 900, fontSize: "1rem", color: "#0f172a" }}>ListingX</span>
         </div>
-        <div style={{ color: "#475569", fontSize: "0.85rem" }}>© 2026 ListingX. All rights reserved. Built for global ecommerce sellers.</div>
-        <div style={{ display: "flex", gap: 24, fontSize: "0.85rem", color: "#475569" }}>
-          <a href="#" style={{ color: "#475569", textDecoration: "none" }}>Privacy</a>
-          <a href="#" style={{ color: "#475569", textDecoration: "none" }}>Terms</a>
-          <a href="#" style={{ color: "#475569", textDecoration: "none" }}>Contact</a>
+        <div style={{ color: "#94a3b8", fontSize: "0.82rem" }}>© 2026 ListingX. Built for global ecommerce sellers.</div>
+        <div style={{ display: "flex", gap: 24, fontSize: "0.82rem" }}>
+          {["Privacy", "Terms", "Contact"].map(l => (
+            <a key={l} href="#" style={{ color: "#94a3b8", textDecoration: "none" }}>{l}</a>
+          ))}
         </div>
       </footer>
     </div>
