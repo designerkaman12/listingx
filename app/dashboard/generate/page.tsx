@@ -24,7 +24,6 @@ function GenerateContent() {
   const [generating, setGenerating] = useState(false);
   const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
-  const [charIndex, setCharIndex] = useState(0);
 
   const product = MOCK_PRODUCTS.find(p => p.id === selectedProduct) || MOCK_PRODUCTS[0];
   const typeConfig = GENERATION_TYPES.find(t => t.id === selectedType)!;
@@ -32,7 +31,6 @@ function GenerateContent() {
   const generate = async () => {
     setGenerating(true);
     setOutput("");
-    setCharIndex(0);
     await new Promise(r => setTimeout(r, 800));
     const fn = GENERATED_CONTENT_TEMPLATES[selectedType];
     const text = fn ? fn(product) : "Content generated successfully.";
