@@ -45,86 +45,87 @@ const PROMPTS = ["Why is my product not selling?", "Fix my listing title", "Gene
 export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const G = "linear-gradient(135deg, #4F46E5, #9333EA)";
+  const GS = "linear-gradient(135deg, rgba(79,70,229,0.06), rgba(147,51,234,0.04))";
+  const B = "#E2E8F0";
+  const T1 = "#0F172A";
+  const T2 = "#475569";
+  const TM = "#94A3B8";
+  const SP = "0 4px 16px rgba(79,70,229,0.25)";
+  const ctn: React.CSSProperties = { maxWidth: 1200, margin: "0 auto", padding: "0 24px" };
+  const btnP: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, background: G, color: "white", padding: "14px 28px", borderRadius: 10, fontSize: 16, fontWeight: 700, border: "none", cursor: "pointer", textDecoration: "none", boxShadow: SP, transition: "all .2s" };
+  const btnS: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, background: "white", color: T1, padding: "14px 28px", borderRadius: 10, fontSize: 16, fontWeight: 600, border: `1.5px solid ${B}`, cursor: "pointer", textDecoration: "none", boxShadow: "0 1px 3px rgba(0,0,0,0.06)", transition: "all .2s" };
+  const cardS: React.CSSProperties = { background: "white", border: `1px solid ${B}`, borderRadius: 12, boxShadow: "0 1px 3px rgba(0,0,0,0.06)", padding: 24 };
+  const secH: React.CSSProperties = { textAlign: "center", marginBottom: 48 };
+  const olS: React.CSSProperties = { fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#4F46E5", marginBottom: 16, display: "block" };
+
   return (
-    <div style={{ background: "var(--bg)", color: "var(--text-primary)", fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ background: "#fff", color: T1, fontFamily: "'Inter', -apple-system, sans-serif" }}>
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 32px", background: "rgba(255,255,255,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid var(--border)" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 32px", background: "rgba(255,255,255,0.95)", backdropFilter: "blur(16px)", borderBottom: `1px solid ${B}` }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 8, background: "var(--gradient)", display: "flex", alignItems: "center", justifyContent: "center" }}><Zap size={16} color="white" /></div>
+          <div style={{ width: 32, height: 32, borderRadius: 8, background: G, display: "flex", alignItems: "center", justifyContent: "center" }}><Zap size={16} color="white" /></div>
           <span style={{ fontWeight: 800, fontSize: 16, letterSpacing: "-0.02em" }}>ListingX</span>
         </div>
         <div style={{ display: "flex", gap: 32, fontSize: 14 }}>
           {["Features", "How It Works", "Pricing", "FAQ"].map(item => (
-            <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} style={{ color: "var(--text-secondary)", textDecoration: "none", fontWeight: 500, transition: "color .2s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--text-primary)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--text-secondary)")}>{item}</a>
+            <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} style={{ color: T2, textDecoration: "none", fontWeight: 500 }}>{item}</a>
           ))}
         </div>
         <div style={{ display: "flex", gap: 8 }}>
-          <Link href="/login" className="btn btn-ghost btn-sm" style={{ textDecoration: "none" }}>Log In</Link>
-          <Link href="/signup" className="btn btn-primary btn-sm" style={{ textDecoration: "none" }}>Start Free Trial</Link>
+          <Link href="/login" style={{ ...btnS, padding: "8px 16px", fontSize: 14 }}>Log In</Link>
+          <Link href="/signup" style={{ ...btnP, padding: "8px 16px", fontSize: 14 }}>Start Free Trial</Link>
         </div>
       </nav>
 
-      {/* HERO — Split Layout */}
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "96px 0 64px", background: "linear-gradient(160deg, #FAFBFF 0%, #F0F2FF 50%, #FAF5FF 100%)" }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
-          {/* Left — Copy */}
-          <div className="animate-fade-in-up">
-            <div className="hero-badge" style={{ marginBottom: 24 }}>
+      {/* HERO */}
+      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "112px 0 80px", background: "linear-gradient(160deg, #FAFBFF 0%, #EEF0FF 50%, #F8F5FF 100%)" }}>
+        <div style={{ ...ctn, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+          <div>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 16px", borderRadius: 99, background: "rgba(79,70,229,0.06)", border: "1px solid rgba(79,70,229,0.15)", fontSize: 13, fontWeight: 600, color: "#4F46E5", marginBottom: 24 }}>
               <MessageSquare size={13} /> Chat-First AI Ecommerce OS
             </div>
-            <h1 className="heading-display" style={{ marginBottom: 24 }}>
-              Your AI Ecommerce<br />Specialist — <span className="text-gradient">Just Ask</span>
+            <h1 style={{ fontSize: 52, fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: 24 }}>
+              Your AI Ecommerce<br />Specialist — <span style={{ background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Just Ask</span>
             </h1>
-            <p className="body-lg" style={{ maxWidth: 480, marginBottom: 32, lineHeight: 1.7 }}>
-              Type what you need. ListingX analyzes your listings, finds what&apos;s broken, generates content, and gives you one-click fixes — all through a single conversation.
+            <p style={{ fontSize: 18, lineHeight: 1.7, color: T2, maxWidth: 480, marginBottom: 32 }}>
+              Type what you need. ListingX analyzes your listings, finds what&apos;s broken, generates content, and gives you one-click fixes.
             </p>
             <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-              <Link href="/signup" className="btn btn-primary btn-xl" style={{ textDecoration: "none" }}>
-                Start Free — 14 Days <ArrowRight size={16} />
-              </Link>
-              <Link href="/dashboard/chat" className="btn btn-secondary btn-xl" style={{ textDecoration: "none" }}>
-                <MessageSquare size={16} /> Try Demo
-              </Link>
+              <Link href="/signup" style={btnP}>Start Free — 14 Days <ArrowRight size={16} /></Link>
+              <Link href="/dashboard/chat" style={btnS}><MessageSquare size={16} /> Try Demo</Link>
             </div>
-            <p className="caption" style={{ marginBottom: 32 }}>No credit card required · Cancel anytime</p>
-
-            {/* Example Prompts */}
+            <p style={{ fontSize: 13, color: TM, marginBottom: 32 }}>No credit card required · Cancel anytime</p>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {PROMPTS.map(p => (
-                <span key={p} style={{ padding: "6px 14px", border: "1px solid var(--border)", borderRadius: 99, fontSize: 13, color: "var(--text-secondary)", background: "white" }}>{p}</span>
+                <span key={p} style={{ padding: "6px 14px", border: `1px solid ${B}`, borderRadius: 99, fontSize: 13, color: T2, background: "white" }}>{p}</span>
               ))}
             </div>
           </div>
 
           {/* Right — Chat Preview */}
-          <div className="animate-fade-in-up delay-200" style={{ background: "white", border: "1px solid var(--border)", borderRadius: 16, boxShadow: "var(--shadow-xl)", overflow: "hidden" }}>
-            {/* Window Bar */}
-            <div style={{ padding: "10px 16px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 6, background: "var(--bg-alt)" }}>
+          <div style={{ background: "white", border: `1px solid ${B}`, borderRadius: 16, boxShadow: "0 16px 48px rgba(0,0,0,0.10)", overflow: "hidden" }}>
+            <div style={{ padding: "10px 16px", borderBottom: `1px solid ${B}`, display: "flex", alignItems: "center", gap: 6, background: "#F8FAFC" }}>
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#EF4444" }} />
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#F59E0B" }} />
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#10B981" }} />
-              <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 600, color: "var(--text-muted)" }}>ListingX AI Chat</span>
+              <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 600, color: TM }}>ListingX AI Chat</span>
             </div>
-            <div style={{ padding: 20, display: "flex", flexDirection: "column", gap: 16 }}>
-              {/* User */}
+            <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16 }}>
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <div style={{ background: "var(--gradient)", color: "white", padding: "10px 16px", borderRadius: "16px 16px 4px 16px", fontSize: 14, maxWidth: "75%" }}>Why is my yoga mat not selling on Flipkart?</div>
+                <div style={{ background: G, color: "white", padding: "10px 16px", borderRadius: "16px 16px 4px 16px", fontSize: 14, maxWidth: "75%" }}>Why is my yoga mat not selling on Flipkart?</div>
               </div>
-              {/* AI */}
               <div style={{ display: "flex", gap: 8 }}>
-                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--gradient)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Zap size={12} color="white" /></div>
-                <div style={{ background: "var(--bg-alt)", border: "1px solid var(--border)", padding: "12px 16px", borderRadius: "16px 16px 16px 4px", fontSize: 14, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-                  <strong style={{ color: "var(--text-primary)" }}>🚨 Critical: Invisible on Flipkart</strong><br /><br />
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: G, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Zap size={12} color="white" /></div>
+                <div style={{ background: "#F8FAFC", border: `1px solid ${B}`, padding: "12px 16px", borderRadius: "16px 16px 16px 4px", fontSize: 14, lineHeight: 1.6, color: T2 }}>
+                  <strong style={{ color: T1 }}>🚨 Critical: Invisible on Flipkart</strong><br /><br />
                   Found <strong>7 issues</strong> — zero keywords, no description, only 1 image, pricing above competitors.<br /><br />
-                  <span style={{ color: "var(--primary)", fontWeight: 600 }}>Shall I fix the title first?</span>
+                  <span style={{ color: "#4F46E5", fontWeight: 600 }}>Shall I fix the title first?</span>
                 </div>
               </div>
-              {/* Actions */}
               <div style={{ display: "flex", gap: 6, paddingLeft: 36, flexWrap: "wrap" }}>
                 {["✏️ Fix Title", "📝 Bullets", "📸 Images", "📈 Growth Plan"].map(a => (
-                  <span key={a} style={{ padding: "5px 12px", border: "1px solid var(--border)", borderRadius: 99, fontSize: 12, fontWeight: 600, color: "var(--text-muted)", background: "white" }}>{a}</span>
+                  <span key={a} style={{ padding: "5px 12px", border: `1px solid ${B}`, borderRadius: 99, fontSize: 12, fontWeight: 600, color: TM, background: "white" }}>{a}</span>
                 ))}
               </div>
             </div>
@@ -133,33 +134,33 @@ export default function LandingPage() {
       </section>
 
       {/* STATS */}
-      <div style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "32px 0", background: "white" }}>
-        <div className="container" style={{ display: "flex", justifyContent: "center", gap: 64, flexWrap: "wrap" }}>
+      <div style={{ borderTop: `1px solid ${B}`, borderBottom: `1px solid ${B}`, padding: "32px 0", background: "white" }}>
+        <div style={{ ...ctn, display: "flex", justifyContent: "center", gap: 64, flexWrap: "wrap" }}>
           {[["10,000+", "Active Sellers"], ["2M+", "Products Analyzed"], ["45%", "Avg Sales Uplift"], ["Amazon & Flipkart", "Fully Supported"]].map(([v, l]) => (
             <div key={l} style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 24, fontWeight: 800 }} className="text-gradient">{v}</div>
-              <div className="caption" style={{ marginTop: 4 }}>{l}</div>
+              <div style={{ fontSize: 24, fontWeight: 800, background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{v}</div>
+              <div style={{ fontSize: 12, color: TM, marginTop: 4 }}>{l}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="section">
-        <div className="container">
-          <div className="section-header">
-            <span className="overline">How It Works</span>
-            <h2 className="h2">From listing to growth in three steps</h2>
+      <section id="how-it-works" style={{ padding: "80px 0" }}>
+        <div style={ctn}>
+          <div style={secH}>
+            <span style={olS}>How It Works</span>
+            <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>From listing to growth in three steps</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
             {steps.map(s => (
-              <div key={s.n} className="step-card card-hover">
-                <div style={{ position: "absolute", top: 12, right: 16, fontSize: 56, fontWeight: 900, color: "rgba(79,70,229,0.05)", lineHeight: 1 }}>{s.n}</div>
-                <div style={{ width: 44, height: 44, background: "var(--gradient)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+              <div key={s.n} style={{ ...cardS, position: "relative", overflow: "hidden", padding: "32px 24px", transition: "all .25s" }}>
+                <div style={{ position: "absolute", top: 12, right: 16, fontSize: 56, fontWeight: 900, color: "rgba(79,70,229,0.04)", lineHeight: 1 }}>{s.n}</div>
+                <div style={{ width: 44, height: 44, background: G, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20, boxShadow: SP }}>
                   <s.icon size={20} color="white" />
                 </div>
-                <h3 className="h4" style={{ marginBottom: 8 }}>{s.title}</h3>
-                <p className="body">{s.desc}</p>
+                <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{s.title}</h3>
+                <p style={{ fontSize: 14, color: T2, lineHeight: 1.6 }}>{s.desc}</p>
               </div>
             ))}
           </div>
@@ -167,20 +168,20 @@ export default function LandingPage() {
       </section>
 
       {/* FEATURES */}
-      <section id="features" className="section section-alt" style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
-        <div className="container">
-          <div className="section-header">
-            <span className="overline">Features</span>
-            <h2 className="h2">Everything you need to grow</h2>
+      <section id="features" style={{ padding: "80px 0", background: "#F8FAFC", borderTop: `1px solid ${B}`, borderBottom: `1px solid ${B}` }}>
+        <div style={ctn}>
+          <div style={secH}>
+            <span style={olS}>Features</span>
+            <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>Everything you need to grow</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
             {features.map(f => (
-              <div key={f.title} className="feature-card">
+              <div key={f.title} style={{ ...cardS, transition: "all .25s" }}>
                 <div style={{ width: 40, height: 40, background: "rgba(79,70,229,0.06)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
-                  <f.icon size={18} color="var(--primary)" />
+                  <f.icon size={18} color="#4F46E5" />
                 </div>
-                <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: 6, color: "var(--text-primary)" }}>{f.title}</h3>
-                <p className="body-sm">{f.desc}</p>
+                <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: 6 }}>{f.title}</h3>
+                <p style={{ fontSize: 13, color: TM, lineHeight: 1.5 }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -188,24 +189,24 @@ export default function LandingPage() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="section">
-        <div className="container">
-          <div className="section-header">
-            <span className="overline">Testimonials</span>
-            <h2 className="h2">Sellers love ListingX</h2>
+      <section style={{ padding: "80px 0" }}>
+        <div style={ctn}>
+          <div style={secH}>
+            <span style={olS}>Testimonials</span>
+            <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>Sellers love ListingX</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
             {testimonials.map(t => (
-              <div key={t.name} className="card card-hover" style={{ padding: 24 }}>
+              <div key={t.name} style={{ ...cardS, transition: "all .25s" }}>
                 <div style={{ display: "flex", gap: 2, marginBottom: 16 }}>
                   {[...Array(t.stars)].map((_, i) => <Star key={i} size={14} fill="#F59E0B" color="#F59E0B" />)}
                 </div>
-                <p className="body" style={{ marginBottom: 24, lineHeight: 1.7 }}>&quot;{t.quote}&quot;</p>
+                <p style={{ fontSize: 14, color: T2, marginBottom: 24, lineHeight: 1.7 }}>&quot;{t.quote}&quot;</p>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <div style={{ width: 36, height: 36, borderRadius: "50%", background: "var(--gradient)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "white" }}>{t.initials}</div>
+                  <div style={{ width: 36, height: 36, borderRadius: "50%", background: G, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "white" }}>{t.initials}</div>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
-                    <div className="caption">{t.role}</div>
+                    <div style={{ fontSize: 12, color: TM }}>{t.role}</div>
                   </div>
                 </div>
               </div>
@@ -215,31 +216,31 @@ export default function LandingPage() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="section section-alt" style={{ borderTop: "1px solid var(--border)" }}>
-        <div className="container">
-          <div className="section-header">
-            <span className="overline">Pricing</span>
-            <h2 className="h2">Simple, transparent pricing</h2>
-            <p className="body-lg">14-day free trial on all plans. No credit card required.</p>
+      <section id="pricing" style={{ padding: "80px 0", background: "#F8FAFC", borderTop: `1px solid ${B}` }}>
+        <div style={ctn}>
+          <div style={secH}>
+            <span style={olS}>Pricing</span>
+            <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>Simple, transparent pricing</h2>
+            <p style={{ fontSize: 16, color: T2, marginTop: 16 }}>14-day free trial on all plans. No credit card required.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, alignItems: "start" }}>
             {pricing.map(p => (
-              <div key={p.name} className={`pricing-card${p.featured ? " featured" : ""}`} style={{ position: "relative" }}>
-                {p.featured && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--gradient)", color: "white", padding: "4px 16px", borderRadius: 99, fontSize: 12, fontWeight: 700 }}>Most Popular</div>}
+              <div key={p.name} style={{ ...cardS, position: "relative", borderColor: p.featured ? "#4F46E5" : B, borderWidth: p.featured ? 2 : 1, boxShadow: p.featured ? "0 0 0 3px rgba(79,70,229,0.08), 0 8px 24px rgba(0,0,0,0.08)" : cardS.boxShadow, padding: 32 }}>
+                {p.featured && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: G, color: "white", padding: "4px 16px", borderRadius: 99, fontSize: 12, fontWeight: 700 }}>Most Popular</div>}
                 <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>{p.name}</div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                   <span style={{ fontSize: 36, fontWeight: 800 }}>${p.price}</span>
-                  <span className="caption">/mo</span>
+                  <span style={{ fontSize: 12, color: TM }}>/mo</span>
                 </div>
-                <div className="caption" style={{ marginBottom: 24 }}>Up to {p.products} products</div>
-                <ul style={{ listStyle: "none", marginBottom: 24 }}>
+                <div style={{ fontSize: 12, color: TM, marginBottom: 24 }}>Up to {p.products} products</div>
+                <ul style={{ listStyle: "none", marginBottom: 24, padding: 0 }}>
                   {p.features.map(f => (
-                    <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, fontSize: 14, color: "var(--text-secondary)" }}>
-                      <CheckCircle size={14} color="var(--success)" style={{ flexShrink: 0 }} /> {f}
+                    <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, fontSize: 14, color: T2 }}>
+                      <CheckCircle size={14} color="#10B981" style={{ flexShrink: 0 }} /> {f}
                     </li>
                   ))}
                 </ul>
-                <Link href="/signup" className={`btn ${p.featured ? "btn-primary" : "btn-secondary"} btn-lg`} style={{ textDecoration: "none", width: "100%", justifyContent: "center" }}>Start Free Trial</Link>
+                <Link href="/signup" style={p.featured ? { ...btnP, width: "100%", justifyContent: "center" } : { ...btnS, width: "100%", justifyContent: "center" }}>Start Free Trial</Link>
               </div>
             ))}
           </div>
@@ -247,19 +248,19 @@ export default function LandingPage() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="section">
-        <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 32px" }}>
-          <div className="section-header">
-            <h2 className="h2">Frequently asked questions</h2>
+      <section id="faq" style={{ padding: "80px 0" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px" }}>
+          <div style={secH}>
+            <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>Frequently asked questions</h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {faqs.map((f, i) => (
-              <div key={i} className="card" style={{ overflow: "hidden" }}>
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px", background: "none", border: "none", color: "var(--text-primary)", fontWeight: 600, fontSize: 15, cursor: "pointer", textAlign: "left", gap: 16, fontFamily: "inherit" }}>
+              <div key={i} style={{ ...cardS, overflow: "hidden", padding: 0 }}>
+                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 24px", background: "none", border: "none", color: T1, fontWeight: 600, fontSize: 15, cursor: "pointer", textAlign: "left", gap: 16, fontFamily: "inherit" }}>
                   {f.q}
-                  <ChevronDown size={16} style={{ flexShrink: 0, transform: openFaq === i ? "rotate(180deg)" : "none", transition: "transform .25s", color: "var(--text-muted)" }} />
+                  <ChevronDown size={16} style={{ flexShrink: 0, transform: openFaq === i ? "rotate(180deg)" : "none", transition: "transform .25s", color: TM }} />
                 </button>
-                {openFaq === i && <div style={{ padding: "0 20px 16px", color: "var(--text-secondary)", lineHeight: 1.7, fontSize: 14, borderTop: "1px solid var(--border-light)" }}>{f.a}</div>}
+                {openFaq === i && <div style={{ padding: "0 24px 16px", color: T2, lineHeight: 1.7, fontSize: 14, borderTop: "1px solid #F1F5F9" }}>{f.a}</div>}
               </div>
             ))}
           </div>
@@ -267,28 +268,28 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ padding: "64px 24px", textAlign: "center", background: "var(--gradient-soft)", borderTop: "1px solid rgba(79,70,229,0.1)" }}>
+      <section style={{ padding: "80px 24px", textAlign: "center", background: GS, borderTop: "1px solid rgba(79,70,229,0.1)" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(16,185,129,.08)", border: "1px solid rgba(16,185,129,.15)", borderRadius: 99, padding: "4px 14px", fontSize: 12, fontWeight: 700, color: "#059669", marginBottom: 24 }}>
           <Shield size={12} /> SOC2 · SSL · GDPR
         </div>
-        <h2 className="h2" style={{ marginBottom: 16 }}>Ready to grow your sales?</h2>
-        <p className="body-lg" style={{ marginBottom: 32 }}>Join 10,000+ sellers using ListingX to analyze, fix, and scale.</p>
-        <Link href="/signup" className="btn btn-primary btn-xl" style={{ textDecoration: "none" }}>
+        <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 16 }}>Ready to grow your sales?</h2>
+        <p style={{ fontSize: 16, color: T2, marginBottom: 32 }}>Join 10,000+ sellers using ListingX to analyze, fix, and scale.</p>
+        <Link href="/signup" style={btnP}>
           Start Free Trial — 14 Days <ArrowRight size={16} />
         </Link>
-        <p className="caption" style={{ marginTop: 16 }}>No credit card required · Full access · Cancel anytime</p>
+        <p style={{ fontSize: 13, color: TM, marginTop: 16 }}>No credit card required · Full access · Cancel anytime</p>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ padding: "24px 32px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16, background: "white" }}>
+      <footer style={{ padding: "24px 32px", borderTop: `1px solid ${B}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16, background: "white" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ width: 24, height: 24, borderRadius: 6, background: "var(--gradient)", display: "flex", alignItems: "center", justifyContent: "center" }}><Zap size={12} color="white" /></div>
+          <div style={{ width: 24, height: 24, borderRadius: 6, background: G, display: "flex", alignItems: "center", justifyContent: "center" }}><Zap size={12} color="white" /></div>
           <span style={{ fontWeight: 800, fontSize: 14 }}>ListingX</span>
         </div>
-        <div className="caption">© 2026 ListingX. Built for global ecommerce sellers.</div>
+        <div style={{ fontSize: 12, color: TM }}>© 2026 ListingX. Built for global ecommerce sellers.</div>
         <div style={{ display: "flex", gap: 24 }}>
           {["Privacy", "Terms", "Contact"].map(l => (
-            <a key={l} href="#" className="caption" style={{ textDecoration: "none" }}>{l}</a>
+            <a key={l} href="#" style={{ fontSize: 12, color: TM, textDecoration: "none" }}>{l}</a>
           ))}
         </div>
       </footer>
