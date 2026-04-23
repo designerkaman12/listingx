@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
-import { ArrowRight, BarChart2, Zap, Target, TrendingUp, CheckCircle, Star, ChevronDown, Globe, ShoppingCart, Package, Search, Image, FileText, Users, Sparkles, AlertTriangle, Shield } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, BarChart2, Zap, Target, TrendingUp, CheckCircle, Star, ChevronDown, Globe, ShoppingCart, Package, Search, Image, FileText, Users, Sparkles, AlertTriangle, Shield, MessageSquare, Send } from "lucide-react";
 
 const features = [
   { icon: Search, title: "AI Listing Diagnosis", desc: "Instantly identify why your product isn't selling — from keyword gaps to image problems to pricing issues.", color: "#6366f1", bg: "rgba(99,102,241,0.08)" },
@@ -43,23 +43,32 @@ const faqs = [
   { q: "How does the weekly growth manager work?", a: "Every week, ListingX re-analyzes your listings, compares before vs. after, identifies new opportunities, and sends you a weekly action plan so you're always improving." },
 ];
 
+const CHAT_PROMPTS = [
+  "Why is my yoga mat not selling on Flipkart?",
+  "Fix my product title for better SEO",
+  "Generate bullet points for my earbuds",
+  "Create an image brief for my listing",
+  "Build me a 7-day growth plan",
+  "Compare my product with competitors",
+];
+
 const S: Record<string, React.CSSProperties> = {
-  nav: { position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 32px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.9)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: "1px solid #f1f5f9", boxShadow: "0 1px 12px rgba(0,0,0,0.06)" },
-  hero: { minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "120px 24px 80px", position: "relative", overflow: "hidden", background: "linear-gradient(180deg, #fafaff 0%, #f8fafc 100%)" },
+  nav: { position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 32px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.92)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderBottom: "1px solid var(--border)", boxShadow: "0 1px 12px rgba(0,0,0,0.04)" },
+  hero: { minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "120px 24px 80px", position: "relative", overflow: "hidden", background: "linear-gradient(160deg, #FAFBFF 0%, #F0F4FF 40%, #F5F0FF 100%)" },
 };
 
 export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div style={{ background: "#f8fafc", color: "#0f172a", fontFamily: "Inter, sans-serif" }}>
+    <div style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "'Inter', 'Plus Jakarta Sans', sans-serif" }}>
       {/* NAV */}
       <nav style={S.nav}>
         <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-          <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 12px rgba(99,102,241,0.35)" }}>
+          <div style={{ width: 36, height: 36, borderRadius: 10, background: "var(--gradient-primary)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-primary)" }}>
             <Zap size={18} color="white" />
           </div>
-          <span style={{ fontWeight: 900, fontSize: "1.2rem", color: "#0f172a", letterSpacing: "-0.02em" }}>ListingX</span>
+          <span style={{ fontWeight: 900, fontSize: "1.2rem", color: "var(--text)", letterSpacing: "-0.02em" }}>ListingX</span>
         </div>
         <div style={{ display: "flex", gap: 32, fontSize: "0.875rem" }}>
           {["Features", "How It Works", "Pricing", "FAQ"].map(item => (
@@ -83,49 +92,57 @@ export default function LandingPage() {
 
         <div style={{ position: "relative", maxWidth: 860, margin: "0 auto" }}>
           <div className="hero-badge animate-fade-in-up" style={{ marginBottom: 28 }}>
-            <Sparkles size={13} />
-            <span>AI-Powered Ecommerce Growth Platform</span>
+            <MessageSquare size={13} />
+            <span>Chat-First AI Ecommerce Operating System</span>
           </div>
 
-          <h1 className="heading-display animate-fade-in-up delay-100" style={{ marginBottom: 24, color: "#0f172a" }}>
-            Find Why Your Products<br />
-            <span className="text-gradient-primary">Aren't Selling</span> — and Fix It
+          <h1 className="heading-display animate-fade-in-up delay-100" style={{ marginBottom: 24, color: "var(--text)" }}>
+            Your AI Ecommerce<br />
+            Specialist — <span className="text-gradient-primary">Just Ask</span>
           </h1>
 
-          <p className="animate-fade-in-up delay-200" style={{ fontSize: "1.15rem", color: "#64748b", lineHeight: 1.7, maxWidth: 620, margin: "0 auto 40px" }}>
-            ListingX is your AI ecommerce specialist. Diagnose listing gaps, discover missed opportunities, generate premium content, and grow your sales — all in one platform.
+          <p className="animate-fade-in-up delay-200" style={{ fontSize: "1.15rem", color: "var(--text-muted)", lineHeight: 1.7, maxWidth: 620, margin: "0 auto 40px" }}>
+            Type what you need. ListingX analyzes your listings, finds what&apos;s broken, generates content, and gives you one-click fixes — all through a single conversation.
           </p>
 
           <div className="animate-fade-in-up delay-300" style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
             <Link href="/signup" className="btn btn-primary btn-xl" style={{ textDecoration: "none", gap: 10 }}>
               Start Free — 14 Days <ArrowRight size={18} />
             </Link>
-            <Link href="/dashboard" className="btn btn-secondary btn-xl" style={{ textDecoration: "none" }}>
-              View Demo Dashboard
+            <Link href="/dashboard/chat" className="btn btn-secondary btn-xl" style={{ textDecoration: "none", gap: 8 }}>
+              <MessageSquare size={16} /> Try AI Chat Demo
             </Link>
           </div>
           <p className="animate-fade-in-up delay-400" style={{ color: "#94a3b8", fontSize: "0.82rem" }}>No credit card required · Cancel anytime · Full access trial</p>
 
-          {/* Demo preview card */}
-          <div className="animate-fade-in-up delay-500" style={{ marginTop: 60, background: "white", border: "1px solid #e2e8f0", borderRadius: 20, padding: "24px 28px", boxShadow: "0 8px 40px rgba(0,0,0,0.1)", maxWidth: 680, margin: "60px auto 0", textAlign: "left" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
-              <div>
-                <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>✦ AI DIAGNOSIS — LIVE PREVIEW</div>
-                <div style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.95rem" }}>Wireless Bluetooth Earbuds Pro X5</div>
+          {/* Chat Demo Card */}
+          <div className="animate-fade-in-up delay-500 chat-demo-container" style={{ marginTop: 60, textAlign: "left" }}>
+            <div className="chat-demo-header">
+              <div className="chat-demo-dot" style={{ background: "#EF4444" }} />
+              <div className="chat-demo-dot" style={{ background: "#F59E0B" }} />
+              <div className="chat-demo-dot" style={{ background: "#10B981" }} />
+              <span style={{ marginLeft: 8, fontSize: "0.78rem", fontWeight: 600, color: "var(--text-muted)" }}>ListingX AI Chat</span>
+            </div>
+            <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16 }}>
+              {/* User msg */}
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <div style={{ background: "var(--gradient-primary)", color: "white", padding: "12px 18px", borderRadius: "18px 18px 6px 18px", fontSize: "0.88rem", maxWidth: "70%", boxShadow: "var(--shadow-primary)" }}>Why is my yoga mat not selling on Flipkart?</div>
               </div>
-              <div style={{ background: "#fff7ed", color: "#ea580c", border: "1px solid #fed7aa", borderRadius: 20, padding: "4px 12px", fontSize: "0.75rem", fontWeight: 700 }}>● Have Potential</div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 18 }}>
-              {[["52", "Listing Score", "#ef4444"], ["41", "SEO Score", "#f97316"], ["38", "Conversion", "#ef4444"], ["82", "Growth Potential", "#22c55e"]].map(([val, label, color]) => (
-                <div key={label} style={{ background: "#f8fafc", borderRadius: 12, padding: "12px 10px", textAlign: "center" }}>
-                  <div style={{ fontSize: "1.6rem", fontWeight: 900, color }}>{val}</div>
-                  <div style={{ fontSize: "0.7rem", color: "#94a3b8", fontWeight: 600, marginTop: 2 }}>{label}</div>
+              {/* AI msg */}
+              <div style={{ display: "flex", gap: 10 }}>
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--gradient-primary)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Zap size={14} color="white" /></div>
+                <div style={{ background: "var(--bg-subtle)", border: "1px solid var(--border)", padding: "14px 18px", borderRadius: "18px 18px 18px 6px", fontSize: "0.85rem", color: "var(--text-secondary)", lineHeight: 1.65, maxWidth: "80%" }}>
+                  <strong>🚨 Critical: This product is invisible on Flipkart</strong><br /><br />
+                  Found <strong>7 issues</strong> — your title has zero keywords, no description, only 1 image, and pricing is above competitors.<br /><br />
+                  <span style={{ color: "var(--primary)", fontWeight: 600 }}>Shall I fix the title first?</span>
                 </div>
-              ))}
-            </div>
-            <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 10, padding: "12px 14px", display: "flex", gap: 10, alignItems: "flex-start" }}>
-              <AlertTriangle size={15} color="#dc2626" style={{ flexShrink: 0, marginTop: 1 }} />
-              <div style={{ fontSize: "0.82rem", color: "#374151" }}><strong style={{ color: "#dc2626" }}>Top Issue:</strong> Your title is missing 3-5 high-volume search keywords → reduces impressions by ~40% · Fix: Rewrite title with keyword-first formula</div>
+              </div>
+              {/* Action buttons */}
+              <div style={{ display: "flex", gap: 8, paddingLeft: 42, flexWrap: "wrap" }}>
+                {["✏️ Fix My Title", "📝 Generate Bullets", "📸 Image Brief", "📈 Growth Plan"].map(a => (
+                  <span key={a} style={{ padding: "7px 14px", border: "1.5px solid var(--border)", borderRadius: 99, fontSize: "0.78rem", fontWeight: 600, color: "var(--text-muted)", background: "white" }}>{a}</span>
+                ))}
+              </div>
             </div>
           </div>
 

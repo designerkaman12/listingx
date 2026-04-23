@@ -26,26 +26,26 @@ export default function LoginPage() {
   return (
     <div style={{ minHeight: "100vh", display: "grid", gridTemplateColumns: "1fr 1fr", fontFamily: "Inter, sans-serif" }}>
       {/* LEFT - Brand panel */}
-      <div style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 48, position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "20%", left: "15%", width: 200, height: 200, background: "rgba(99,102,241,0.15)", borderRadius: "50%", filter: "blur(50px)" }} />
-        <div style={{ position: "absolute", bottom: "20%", right: "10%", width: 250, height: 250, background: "rgba(139,92,246,0.1)", borderRadius: "50%", filter: "blur(60px)" }} />
-        <div style={{ position: "relative", textAlign: "center", color: "white", maxWidth: 400 }}>
+      <div style={{ background: "linear-gradient(135deg, #F0F4FF 0%, #E8E0FF 50%, #F5F0FF 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 48, position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: "20%", left: "15%", width: 200, height: 200, background: "rgba(79,140,255,0.12)", borderRadius: "50%", filter: "blur(50px)" }} />
+        <div style={{ position: "absolute", bottom: "20%", right: "10%", width: 250, height: 250, background: "rgba(168,85,247,0.08)", borderRadius: "50%", filter: "blur(60px)" }} />
+        <div style={{ position: "relative", textAlign: "center", color: "var(--text)", maxWidth: 400 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: 48 }}>
-            <div style={{ width: 48, height: 48, borderRadius: 14, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center" }}><Zap size={24} color="white" /></div>
+            <div style={{ width: 48, height: 48, borderRadius: 14, background: "var(--gradient-primary)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-primary)" }}><Zap size={24} color="white" /></div>
             <span style={{ fontSize: "1.8rem", fontWeight: 900, letterSpacing: "-0.02em" }}>ListingX</span>
           </div>
           <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: 16, lineHeight: 1.2 }}>Your AI Ecommerce<br />Growth Specialist</h2>
-          <p style={{ color: "#94a3b8", lineHeight: 1.7, marginBottom: 48 }}>Analyze listings, fix what's broken, generate content, and grow your sales — all in one platform.</p>
+          <p style={{ color: "var(--text-muted)", lineHeight: 1.7, marginBottom: 48 }}>Analyze listings, fix what&apos;s broken, generate content, and grow your sales — all in one platform.</p>
           <div style={{ display: "grid", gap: 16 }}>
             {["🔍 AI-powered listing diagnosis", "✍️ Instant content generation", "📈 Sales uplift forecasting", "🏆 Competitor benchmarking"].map(item => (
-              <div key={item} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "14px 20px", textAlign: "left", fontSize: "0.9rem", color: "#e2e8f0" }}>{item}</div>
+              <div key={item} style={{ background: "rgba(79,140,255,0.06)", border: "1px solid rgba(79,140,255,0.12)", borderRadius: 12, padding: "14px 20px", textAlign: "left", fontSize: "0.9rem", color: "var(--text-secondary)" }}>{item}</div>
             ))}
           </div>
         </div>
       </div>
 
       {/* RIGHT - Login form */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: 48, background: "#f8fafc" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: 48, background: "white" }}>
         <div style={{ width: "100%", maxWidth: 420 }}>
           <div style={{ marginBottom: 36 }}>
             <h1 style={{ fontSize: "1.8rem", fontWeight: 800, color: "#0f172a", marginBottom: 8 }}>Welcome back</h1>
