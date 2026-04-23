@@ -79,57 +79,102 @@ export default function LandingPage() {
       </nav>
 
       {/* HERO */}
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "112px 0 80px", background: "linear-gradient(160deg, #FAFBFF 0%, #EEF0FF 50%, #F8F5FF 100%)" }}>
-        <div style={{ ...ctn, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
-          <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 16px", borderRadius: 99, background: "rgba(79,70,229,0.06)", border: "1px solid rgba(79,70,229,0.15)", fontSize: 13, fontWeight: 600, color: "#4F46E5", marginBottom: 24 }}>
-              <MessageSquare size={13} /> Chat-First AI Ecommerce OS
-            </div>
-            <h1 style={{ fontSize: 52, fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: 24 }}>
-              Your AI Ecommerce<br />Specialist — <span style={{ background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Just Ask</span>
-            </h1>
-            <p style={{ fontSize: 18, lineHeight: 1.7, color: T2, maxWidth: 480, marginBottom: 32 }}>
-              Type what you need. ListingX analyzes your listings, finds what&apos;s broken, generates content, and gives you one-click fixes.
-            </p>
-            <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-              <Link href="/signup" style={btnP}>Start Free — 14 Days <ArrowRight size={16} /></Link>
-              <Link href="/dashboard/chat" style={btnS}><MessageSquare size={16} /> Try Demo</Link>
-            </div>
-            <p style={{ fontSize: 13, color: TM, marginBottom: 32 }}>No credit card required · Cancel anytime</p>
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              {PROMPTS.map(p => (
-                <span key={p} style={{ padding: "6px 14px", border: `1px solid ${B}`, borderRadius: 99, fontSize: 13, color: T2, background: "white" }}>{p}</span>
-              ))}
-            </div>
-          </div>
+      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 96, paddingBottom: 80, background: "linear-gradient(150deg, #F8F9FF 0%, #EEF0FF 45%, #F5F0FF 100%)" }}>
+        <div style={{ ...ctn, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", width: "100%" }}>
 
-          {/* Right — Chat Preview */}
-          <div style={{ background: "white", border: `1px solid ${B}`, borderRadius: 16, boxShadow: "0 16px 48px rgba(0,0,0,0.10)", overflow: "hidden" }}>
-            <div style={{ padding: "10px 16px", borderBottom: `1px solid ${B}`, display: "flex", alignItems: "center", gap: 6, background: "#F8FAFC" }}>
-              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#EF4444" }} />
-              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#F59E0B" }} />
-              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#10B981" }} />
-              <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 600, color: TM }}>ListingX AI Chat</span>
+          {/* LEFT */}
+          <div>
+            {/* Badge */}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 99, background: "rgba(79,70,229,0.07)", border: "1px solid rgba(79,70,229,0.18)", fontSize: 12, fontWeight: 700, color: "#4F46E5", marginBottom: 28, letterSpacing: "0.01em" }}>
+              <Sparkles size={12} /> Chat-First AI Ecommerce OS
             </div>
-            <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16 }}>
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <div style={{ background: G, color: "white", padding: "10px 16px", borderRadius: "16px 16px 4px 16px", fontSize: 14, maxWidth: "75%" }}>Why is my yoga mat not selling on Flipkart?</div>
-              </div>
-              <div style={{ display: "flex", gap: 8 }}>
-                <div style={{ width: 28, height: 28, borderRadius: "50%", background: G, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Zap size={12} color="white" /></div>
-                <div style={{ background: "#F8FAFC", border: `1px solid ${B}`, padding: "12px 16px", borderRadius: "16px 16px 16px 4px", fontSize: 14, lineHeight: 1.6, color: T2 }}>
-                  <strong style={{ color: T1 }}>🚨 Critical: Invisible on Flipkart</strong><br /><br />
-                  Found <strong>7 issues</strong> — zero keywords, no description, only 1 image, pricing above competitors.<br /><br />
-                  <span style={{ color: "#4F46E5", fontWeight: 600 }}>Shall I fix the title first?</span>
-                </div>
-              </div>
-              <div style={{ display: "flex", gap: 6, paddingLeft: 36, flexWrap: "wrap" }}>
-                {["✏️ Fix Title", "📝 Bullets", "📸 Images", "📈 Growth Plan"].map(a => (
-                  <span key={a} style={{ padding: "5px 12px", border: `1px solid ${B}`, borderRadius: 99, fontSize: 12, fontWeight: 600, color: TM, background: "white" }}>{a}</span>
+
+            {/* Heading */}
+            <h1 style={{ fontSize: 56, fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.03em", color: "#0F172A", marginBottom: 20, margin: "0 0 20px" }}>
+              Your AI Ecommerce<br />
+              <span style={{ background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Specialist — Just Ask</span>
+            </h1>
+
+            {/* Subtext */}
+            <p style={{ fontSize: 17, lineHeight: 1.75, color: "#475569", maxWidth: 460, margin: "0 0 36px" }}>
+              Type what you need. ListingX finds what&apos;s broken in your listings, generates fixes, and delivers results — all in one conversation.
+            </p>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 20 }}>
+              <Link href="/signup" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: G, color: "white", padding: "13px 24px", borderRadius: 10, fontSize: 15, fontWeight: 700, border: "none", cursor: "pointer", textDecoration: "none", boxShadow: "0 4px 14px rgba(79,70,229,0.35)", whiteSpace: "nowrap" }}>
+                Start Free — 14 Days <ArrowRight size={15} />
+              </Link>
+              <Link href="/dashboard/chat" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "white", color: "#0F172A", padding: "13px 24px", borderRadius: 10, fontSize: 15, fontWeight: 600, border: "1.5px solid #E2E8F0", cursor: "pointer", textDecoration: "none", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", whiteSpace: "nowrap" }}>
+                <MessageSquare size={15} /> Try Live Demo
+              </Link>
+            </div>
+
+            {/* Trust line */}
+            <p style={{ fontSize: 13, color: "#94A3B8", marginBottom: 28 }}>No credit card required · Cancel anytime · Full access</p>
+
+            {/* Prompt chips */}
+            <div>
+              <p style={{ fontSize: 12, color: "#94A3B8", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10 }}>Try asking:</p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {PROMPTS.map(p => (
+                  <span key={p} style={{ padding: "7px 14px", border: "1px solid #E2E8F0", borderRadius: 99, fontSize: 13, color: "#475569", background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.04)", cursor: "pointer" }}>{p}</span>
                 ))}
               </div>
             </div>
           </div>
+
+          {/* RIGHT — Chat Preview Card */}
+          <div style={{ background: "white", border: "1px solid #E2E8F0", borderRadius: 20, boxShadow: "0 20px 60px rgba(79,70,229,0.12), 0 4px 16px rgba(0,0,0,0.06)", overflow: "hidden" }}>
+            {/* Window chrome */}
+            <div style={{ padding: "12px 16px", borderBottom: "1px solid #F1F5F9", display: "flex", alignItems: "center", gap: 6, background: "#FAFBFF" }}>
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#FC5C65" }} />
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#FED330" }} />
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#26DE81" }} />
+              <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 600, color: "#94A3B8" }}>ListingX AI Chat</span>
+              <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 4, fontSize: 11, color: "#10B981", fontWeight: 600 }}>
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10B981" }} /> Online
+              </div>
+            </div>
+
+            {/* Chat messages */}
+            <div style={{ padding: "20px 20px 0" }}>
+              {/* User message */}
+              <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
+                <div style={{ background: G, color: "white", padding: "11px 16px", borderRadius: "18px 18px 4px 18px", fontSize: 14, maxWidth: "78%", lineHeight: 1.5, boxShadow: "0 2px 8px rgba(79,70,229,0.25)" }}>
+                  Why is my yoga mat not selling on Flipkart?
+                </div>
+              </div>
+
+              {/* AI message */}
+              <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
+                <div style={{ width: 30, height: 30, borderRadius: "50%", background: G, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 2px 6px rgba(79,70,229,0.3)" }}>
+                  <Zap size={13} color="white" />
+                </div>
+                <div style={{ background: "#F8FAFC", border: "1px solid #F1F5F9", padding: "12px 16px", borderRadius: "18px 18px 18px 4px", fontSize: 14, lineHeight: 1.65, color: "#475569", flex: 1 }}>
+                  <strong style={{ color: "#0F172A", display: "block", marginBottom: 8 }}>🚨 Critical: Product is invisible on Flipkart</strong>
+                  Found <strong style={{ color: "#EF4444" }}>7 critical issues</strong> — no keywords in title, missing description, only 1 image, price ₹200 above top competitors.<br /><br />
+                  <span style={{ color: "#4F46E5", fontWeight: 600 }}>Shall I fix the title first? It&apos;ll get you 3× more clicks.</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action chips */}
+            <div style={{ padding: "0 20px 16px 20px", display: "flex", gap: 8, flexWrap: "wrap" }}>
+              {["✏️ Fix Title", "📝 Bullets", "📸 Image Plan", "📈 Growth"].map(a => (
+                <span key={a} style={{ padding: "6px 13px", border: "1px solid #E2E8F0", borderRadius: 99, fontSize: 12, fontWeight: 600, color: "#475569", background: "white", cursor: "pointer", boxShadow: "0 1px 2px rgba(0,0,0,0.04)" }}>{a}</span>
+              ))}
+            </div>
+
+            {/* Input bar */}
+            <div style={{ margin: "0 16px 16px", display: "flex", alignItems: "center", gap: 8, background: "#F8FAFC", border: "1.5px solid #E2E8F0", borderRadius: 12, padding: "10px 14px" }}>
+              <span style={{ fontSize: 13, color: "#94A3B8", flex: 1 }}>Ask anything about your listing...</span>
+              <div style={{ width: 28, height: 28, borderRadius: "50%", background: G, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <ArrowRight size={13} color="white" />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
