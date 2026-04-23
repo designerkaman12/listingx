@@ -67,15 +67,15 @@ export default function DashboardPage() {
           <p style={{ color: "#64748b", fontSize: "0.875rem", marginTop: 3 }}>Last analyzed: 2 hours ago · 10 products synced from Amazon & Flipkart</p>
         </div>
         <div style={{ display: "flex", gap: 10 }}>
-          <button className="btn btn-secondary btn-sm"><RefreshCw size={14} /> Re-analyze All</button>
-          <Link href="/dashboard/generate" className="btn btn-primary btn-sm" style={{ textDecoration: "none" }}><Sparkles size={14} /> Generate Content</Link>
+          <button className="btn btn-sm dbtn-secondary" style={{background:"white",border:"1.5px solid #E2E8F0",color:"#475569",display:"inline-flex",alignItems:"center",gap:6,padding:"7px 14px",fontSize:13,fontWeight:600,borderRadius:8}}><RefreshCw size={14} /> Re-analyze All</button>
+          <Link href="/dashboard/generate" className="btn btn-sm dbtn-primary" style={{textDecoration:"none",display:"inline-flex",alignItems:"center",gap:6,padding:"7px 14px",fontSize:13,fontWeight:700,borderRadius:8,background:"linear-gradient(135deg,#6366F1,#8B5CF6)",color:"white",boxShadow:"0 4px 14px rgba(79,70,229,0.3)"}}><Sparkles size={14} /> Generate Content</Link>
         </div>
       </div>
 
       {/* Summary Cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 20, minWidth: 0 }}>
         {summaryCards.map(card => (
-          <div key={card.label} className="card card-hover" style={{ padding: "20px 22px" }}>
+          <div key={card.label} style={{ background:"white", border:"1px solid #E2E8F0", borderRadius:12, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", padding: "20px 18px", overflow:"hidden" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
               <div style={{ width: 40, height: 40, borderRadius: 11, background: card.bg, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <card.icon size={19} color={card.color} />
@@ -98,7 +98,7 @@ export default function DashboardPage() {
       )}
 
       {/* Filters */}
-      <div className="card" style={{ padding: "14px 18px", marginBottom: 18, display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+      <div style={{ background:"white", border:"1px solid #E2E8F0", borderRadius:12, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", padding: "14px 18px", marginBottom: 18, display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
         <Filter size={14} color="#94a3b8" />
         <input type="text" placeholder="Search by title or ASIN..." value={search} onChange={e => setSearch(e.target.value)} className="input" style={{ width: 240, padding: "8px 14px" }} />
         <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className="input" style={{ width: "auto", padding: "8px 14px" }}>
@@ -126,7 +126,7 @@ export default function DashboardPage() {
 
       {/* TABLE VIEW */}
       {view === "table" && (
-        <div className="card" style={{ overflow: "hidden" }}>
+        <div style={{ background:"white", border:"1px solid #E2E8F0", borderRadius:12, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", overflow: "hidden" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr style={{ background: "#f8fafc", borderBottom: "1px solid #e2e8f0" }}>
@@ -198,7 +198,7 @@ export default function DashboardPage() {
           {filtered.map(p => {
             const sc = STATUS_CONFIG[p.status];
             return (
-              <div key={p.id} className="card card-hover" style={{ overflow: "hidden" }}>
+              <div key={p.id} style={{ background:"white", border:"1px solid #E2E8F0", borderRadius:12, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", overflow:"hidden", transition:"transform 0.2s" }}>
                 <div style={{ position: "relative" }}>
                   <img src={p.image} alt={p.title} style={{ width: "100%", height: 160, objectFit: "cover" }} />
                   <div style={{ position: "absolute", top: 10, left: 10, display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 20, background: sc.bg, color: sc.color, fontSize: "0.72rem", fontWeight: 700, backdropFilter: "blur(8px)" }}>
@@ -217,7 +217,7 @@ export default function DashboardPage() {
                       </div>
                     ))}
                   </div>
-                  <Link href={`/dashboard/product/${p.id}`} className="btn btn-primary btn-sm" style={{ textDecoration: "none", width: "100%", justifyContent: "center" }}>
+                  <Link href={`/dashboard/product/${p.id}`} style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, padding:"8px 14px", borderRadius:8, fontSize:13, fontWeight:700, background:"linear-gradient(135deg,#6366F1,#8B5CF6)", color:"white", textDecoration:"none" }}>
                     <Eye size={13} /> View AI Analysis
                   </Link>
                 </div>

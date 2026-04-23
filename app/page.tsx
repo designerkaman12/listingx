@@ -72,7 +72,7 @@ export default function Page() {
         <div style={{position:"absolute",top:"5%",left:"5%",width:480,height:480,borderRadius:"50%",background:"radial-gradient(circle,rgba(79,70,229,0.12) 0%,transparent 65%)",pointerEvents:"none"}}/>
         <div style={{position:"absolute",bottom:"5%",right:"5%",width:380,height:380,borderRadius:"50%",background:"radial-gradient(circle,rgba(147,51,234,0.1) 0%,transparent 65%)",pointerEvents:"none"}}/>
 
-        <div style={{maxWidth:1200,margin:"0 auto",padding:"64px 40px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:80,alignItems:"center",width:"100%",position:"relative",zIndex:1}}>
+        <div style={{maxWidth:1200,margin:"0 auto",padding:"0 40px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:80,alignItems:"center",width:"100%",position:"relative",zIndex:1}}>
 
           {/* LEFT */}
           <div>
@@ -202,7 +202,7 @@ export default function Page() {
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:20}}>
             {testimonials.map((t,i)=>(
-              <div key={i} className="card" style={{padding:28}}>
+              <div key={i} style={{background:"white",border:"1px solid #E2E8F0",borderRadius:16,padding:28,boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
                 <div style={{display:"flex",gap:2,marginBottom:14}}>
                   {Array(t.stars).fill(0).map((_,j)=><Star key={j} size={13} fill="#F59E0B" color="#F59E0B"/>)}
                 </div>
